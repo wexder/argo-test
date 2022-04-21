@@ -72,7 +72,7 @@ spec:
     app: kube-dns
     namespace: dns
   ports:
-  - name: dns
+  - name: dns-udp
     port: 53
     protocol: UDP
   - name: dns-tcp
