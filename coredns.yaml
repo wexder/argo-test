@@ -68,7 +68,8 @@ metadata:
     prometheus.io/scrape: "true"
 spec:
   selector:
-    app: coredns
+    name: coredns
+    namespace: dns
   ports:
   - name: dns
     port: 53
