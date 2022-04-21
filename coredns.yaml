@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: coredns
+  app: coredns
   namespace: dns
 spec:
   strategy:
@@ -69,7 +70,7 @@ metadata:
     prometheus.io/scrape: "true"
 spec:
   selector:
-    k8s-app: kube-dns
+    app: kube-dns
   ports:
   - name: dns
     port: 53
