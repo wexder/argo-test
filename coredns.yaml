@@ -71,7 +71,7 @@ metadata:
     prometheus.io/scrape: "true"
 spec:
   selector:
-    app: coredn
+    app: coredns
   ports:
   - name: dns-udp
     port: 53
