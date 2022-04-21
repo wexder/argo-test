@@ -5,7 +5,7 @@ metadata:
   namespace: dns
 spec:
   selector:
-    app: coredns
+    name: kube-dns
     namespace: dns
   ports:
     - port: 53
