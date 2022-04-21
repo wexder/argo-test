@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: coredns
   namespace: dns
+  labels:
+    app: coredns
 spec:
   strategy:
     type: RollingUpdate
@@ -70,7 +72,6 @@ metadata:
 spec:
   selector:
     app: coredns
-    namespace: dns
   ports:
   - name: dns-udp
     port: 53
