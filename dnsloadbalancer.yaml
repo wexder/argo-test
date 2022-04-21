@@ -12,19 +12,3 @@ spec:
       name: dns-udp
       protocol: UDP
   type: LoadBalancer
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: dns-outside-tcp
-  namespace: dns
-spec:
-  selector:
-    app: coredns
-    namespace: dns
-  ports:
-    - port: 53
-      name: dns-tcp
-      protocol: TCP
-  type: LoadBalancer
-
