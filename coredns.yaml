@@ -10,11 +10,12 @@ spec:
       maxUnavailable: 1
   selector:
     matchLabels:
-      app: coredns
+      k8s-app: kube-dns
   template:
     metadata:
       labels:
         app: coredns
+        k8s-app: kube-dns
     spec:
       containers:
       - name: coredns
@@ -68,12 +69,15 @@ metadata:
     prometheus.io/scrape: "true"
 spec:
   selector:
-    name: coredns
+    app: kube-dns
     namespace: dns
   ports:
   - name: dns
     port: 53
     protocol: UDP
+  - name: dns-tcp
+    port: 53
+    protocol: TCP
   - name: metrics
     port: 9153
     protocol: TCP
