@@ -1,0 +1,16 @@
+- name: Install k3s
+  hosts: k3s-workers
+
+  tasks:
+  - name: ping
+    ping:
+
+  - name: Download k3s
+    become: yes
+    environment:
+      K3S_URL: https://10.22.22.190:6443
+      K3S_TOKEN: d7e5faf2cc0d4161b565c2d44da0217c
+      K3S_NODE_NAME: worker2
+
+    shell: curl -sfL https://get.k3s.io | sh -s -
+

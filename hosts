@@ -1,0 +1,6 @@
+[k3s-workers]
+10.22.22.109
+
+[all:vars]
+ansible_user=smudla
+ansible_sudo_pass=smudla

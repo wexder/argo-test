@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radarr
+  labels:
+    app: radarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: radarr
+  template:
+    metadata:
+      labels:
+        app: radarr
+    spec:
+      containers:
+        - name: radarr
+          image: hotio/radarr
+          ports:
+            - containerPort: 7878
+          volumeMounts:
+            - mountPath: "/mnt/media/"
+              name: radarr-example
+      volumes:
+        - name: radarr-example
+          persistentVolumeClaim:
+            claimName: example
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: radarr
+  labels:
+    app: radarr
+spec:
+  ports:
+    - port: 7878
+      targetPort: 7878
+      protocol: TCP
+  selector:
+    app: radarr
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: radarr
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`radarr.codegrowers.co`)
+      kind: Rule
+      services:
+        - name: radarr
+          port: 7878

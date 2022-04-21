@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-media
+spec:
+  storageClassName: nfs-media
+  capacity:
+    storage: 2Ti
+  persistentVolumeReclaimPolicy: Retain
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 10.22.22.102
+    path: "/mnt/main_pool/media"
